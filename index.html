@@ -1,0 +1,1014 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Al-Fatiha Knowledge Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Noto+Naskh+Arabic:wght@700&family=Public+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f4f1e8;
+        --surface: #fffdf7;
+        --surface-2: #ece7d8;
+        --ink: #1d2420;
+        --ink-soft: #4c554f;
+        --line: #d8d2bf;
+        --green: #17452f;
+        --green-strong: #0f3523;
+        --green-soft: #e2ecdf;
+        --gold: #9a7b2d;
+        --cream: #faf3dd;
+        --cream-line: #e3d5ab;
+        --good: #1e6b3c;
+        --good-bg: #e3f0e2;
+        --bad: #a33327;
+        --bad-bg: #f9e7e2;
+        --radius: 16px;
+        --shadow: 0 10px 30px rgba(29, 36, 32, 0.08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #131713;
+          --surface: #1c211c;
+          --surface-2: #262c26;
+          --ink: #ece9dd;
+          --ink-soft: #b3baaf;
+          --line: #39413a;
+          --green: #7fb894;
+          --green-strong: #a8d3b8;
+          --green-soft: #22352a;
+          --gold: #c9a44e;
+          --good: #8fd0a4;
+          --good-bg: #1f3527;
+          --bad: #eda294;
+          --bad-bg: #3d2622;
+          --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+        line-height: 1.55;
+      }
+      .wrap {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 28px 18px 56px;
+      }
+      /* ---------- start screen ---------- */
+      .chapter-line {
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin: 0 0 10px;
+      }
+      h1 {
+        font-family: "Lora", Georgia, serif;
+        font-weight: 600;
+        font-size: clamp(1.9rem, 6.5vw, 2.7rem);
+        line-height: 1.15;
+        margin: 0 0 14px;
+      }
+      .lede {
+        font-size: 1.06rem;
+        color: var(--ink-soft);
+        margin: 0 0 26px;
+        max-width: 34rem;
+      }
+      .how {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 6px 20px;
+        margin: 0 0 26px;
+      }
+      .how-row {
+        display: flex;
+        gap: 14px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .how-row:last-child { border-bottom: none; }
+      .how-num {
+        flex: 0 0 auto;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--green-soft);
+        color: var(--green);
+        font-weight: 700;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2px;
+      }
+      .how-row p { margin: 0; }
+      .how-row strong { display: block; font-size: 0.98rem; }
+      .how-row span { color: var(--ink-soft); font-size: 0.92rem; }
+      .btn {
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 700;
+        border-radius: 999px;
+        padding: 15px 30px;
+        font-size: 1.02rem;
+        background: var(--green);
+        color: #f5f2e6;
+        width: 100%;
+        transition: background 0.15s ease, transform 0.15s ease;
+      }
+      @media (prefers-color-scheme: dark) {
+        .btn { background: #2c5c40; color: #f2f6ee; }
+      }
+      .btn:hover { background: var(--green-strong); }
+      .btn:active { transform: scale(0.99); }
+      .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+      .btn.secondary {
+        background: transparent;
+        color: var(--green);
+        border: 2px solid var(--green);
+      }
+      .plain-note {
+        margin: 18px 2px 0;
+        font-size: 0.92rem;
+        color: var(--ink-soft);
+      }
+      /* ---------- quiz chrome ---------- */
+      .quiz-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .round-label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin: 0;
+      }
+      .q-count {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--ink-soft);
+        margin: 0;
+        white-space: nowrap;
+      }
+      .progress {
+        height: 6px;
+        border-radius: 999px;
+        background: var(--surface-2);
+        overflow: hidden;
+        margin-bottom: 24px;
+      }
+      .progress-bar {
+        height: 100%;
+        background: var(--green);
+        border-radius: 999px;
+        transition: width 0.3s ease;
+      }
+      /* ---------- Arabic panel (Rule 11: alone, big, cream) ---------- */
+      .arabic-panel {
+        background: var(--cream);
+        border: 1px solid var(--cream-line);
+        border-radius: 18px;
+        padding: 30px 22px 26px;
+        text-align: center;
+        margin-bottom: 14px;
+      }
+      .arabic-panel .ar {
+        font-family: "Noto Naskh Arabic", serif;
+        font-weight: 700;
+        font-size: clamp(1.9rem, 7.5vw, 2.7rem);
+        line-height: 1.9;
+        color: #141414;
+        margin: 0;
+      }
+      .verse-en {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin: 0 2px 26px;
+      }
+      .verse-ref {
+        flex: 0 0 auto;
+        font-size: 0.78rem;
+        font-weight: 700;
+        background: var(--surface-2);
+        color: var(--ink-soft);
+        border-radius: 999px;
+        padding: 3px 10px;
+        margin-top: 4px;
+      }
+      .verse-en p {
+        margin: 0;
+        font-family: "Lora", Georgia, serif;
+        font-style: italic;
+        font-size: 1.05rem;
+      }
+      /* ---------- question ---------- */
+      .question {
+        font-family: "Lora", Georgia, serif;
+        font-weight: 600;
+        font-size: clamp(1.25rem, 4.8vw, 1.5rem);
+        line-height: 1.35;
+        margin: 0 0 8px;
+      }
+      .question-sub {
+        color: var(--ink-soft);
+        font-size: 0.95rem;
+        margin: 0 0 20px;
+      }
+      .options { display: grid; gap: 10px; margin-bottom: 18px; }
+      .option {
+        appearance: none;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        background: var(--surface);
+        color: var(--ink);
+        border: 2px solid var(--line);
+        border-radius: 14px;
+        padding: 14px 16px;
+        font-size: 1rem;
+        line-height: 1.45;
+        width: 100%;
+        transition: border-color 0.12s ease, background 0.12s ease;
+      }
+      .option:hover { border-color: var(--green); }
+      .option .letter {
+        flex: 0 0 auto;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: 2px solid var(--line);
+        font-size: 0.82rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--ink-soft);
+        margin-top: 1px;
+      }
+      .option.selected { border-color: var(--green); background: var(--green-soft); }
+      .option.selected .letter { border-color: var(--green); color: var(--green); }
+      .option.correct { border-color: var(--good); background: var(--good-bg); cursor: default; }
+      .option.correct .letter { border-color: var(--good); color: var(--good); }
+      .option.wrong { border-color: var(--bad); background: var(--bad-bg); cursor: default; }
+      .option.wrong .letter { border-color: var(--bad); color: var(--bad); }
+      .option.locked { cursor: default; }
+      .option.locked:hover { border-color: var(--line); }
+      .option.correct:hover { border-color: var(--good); }
+      .option.wrong:hover { border-color: var(--bad); }
+      .feedback {
+        border-radius: 14px;
+        padding: 16px 18px;
+        margin-bottom: 18px;
+        display: none;
+      }
+      .feedback.show { display: block; }
+      .feedback.good { background: var(--good-bg); }
+      .feedback.bad { background: var(--bad-bg); }
+      .feedback .verdict { font-weight: 700; margin: 0 0 4px; }
+      .feedback.good .verdict { color: var(--good); }
+      .feedback.bad .verdict { color: var(--bad); }
+      .feedback .answer-text { margin: 0; }
+      .feedback .answer-text strong { font-weight: 700; }
+      /* ---------- ordering question ---------- */
+      .picked-zone {
+        border: 2px dashed var(--line);
+        border-radius: 14px;
+        padding: 14px 16px;
+        min-height: 58px;
+        margin-bottom: 16px;
+        background: var(--surface);
+      }
+      .picked-zone .empty-hint { color: var(--ink-soft); font-size: 0.95rem; margin: 4px 0; }
+      .picked-item {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        padding: 6px 0;
+        font-size: 1rem;
+      }
+      .picked-item .n {
+        flex: 0 0 auto;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--green);
+        color: #f5f2e6;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateY(3px);
+      }
+      .tile-grid { display: grid; gap: 10px; margin-bottom: 14px; }
+      .tile {
+        appearance: none;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+        background: var(--surface);
+        color: var(--ink);
+        border: 2px solid var(--line);
+        border-radius: 14px;
+        padding: 13px 16px;
+        font-size: 1rem;
+        line-height: 1.45;
+        width: 100%;
+      }
+      .tile:hover { border-color: var(--green); }
+      .tile.used { opacity: 0.35; cursor: default; }
+      .tile.used:hover { border-color: var(--line); }
+      .order-actions { display: flex; gap: 10px; margin-bottom: 18px; }
+      .btn.small { width: auto; padding: 10px 20px; font-size: 0.95rem; }
+      /* ---------- results ---------- */
+      .score-hero {
+        text-align: center;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 34px 22px 28px;
+        margin-bottom: 26px;
+      }
+      .score-big {
+        font-family: "Lora", Georgia, serif;
+        font-size: clamp(3rem, 14vw, 4.2rem);
+        font-weight: 600;
+        line-height: 1;
+        margin: 0 0 6px;
+      }
+      .score-big small { font-size: 0.45em; color: var(--ink-soft); }
+      .score-msg { font-size: 1.05rem; margin: 0 0 4px; }
+      .score-sub { color: var(--ink-soft); font-size: 0.95rem; margin: 0 0 22px; }
+      .review-title {
+        font-family: "Lora", Georgia, serif;
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin: 0 0 14px;
+      }
+      .review-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 18px;
+        margin-bottom: 12px;
+      }
+      .review-card .rq { font-weight: 600; margin: 0 0 8px; font-size: 0.98rem; }
+      .review-card .ra { margin: 0 0 4px; font-size: 0.95rem; }
+      .review-card .ra .tag {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border-radius: 999px;
+        padding: 2px 8px;
+        margin-right: 8px;
+        vertical-align: 1px;
+      }
+      .tag.yours-good { background: var(--good-bg); color: var(--good); }
+      .tag.yours-bad { background: var(--bad-bg); color: var(--bad); }
+      .tag.right { background: var(--surface-2); color: var(--ink-soft); }
+      .review-card ol { margin: 6px 0 2px; padding-left: 22px; font-size: 0.95rem; }
+      .review-card ol li { margin-bottom: 3px; }
+      /* ---------- footer ---------- */
+      footer {
+        margin-top: 40px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        font-size: 0.85rem;
+        color: var(--ink-soft);
+      }
+      footer p { margin: 0 0 6px; }
+      [hidden] { display: none !important; }
+      @media (prefers-reduced-motion: reduce) {
+        .progress-bar, .btn { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <!-- ================= START ================= -->
+      <section id="screen-start">
+        <p class="chapter-line">Chapter 1 · Al-Fatiha · The Opening</p>
+        <h1>How well do you know Al-Fatiha?</h1>
+        <p class="lede">
+          Chapter 1. Al-Fatiha. The Opening. Seven verses, in order. This test
+          asks only what the chapter itself says — every question can be
+          answered from the seven verses.
+        </p>
+
+        <div class="how">
+          <div class="how-row">
+            <div class="how-num">1</div>
+            <p>
+              <strong>Round 1 — one question per verse</strong>
+              <span>7 questions. Each verse is shown in Arabic, big on its own
+              panel, with the English underneath.</span>
+            </p>
+          </div>
+          <div class="how-row">
+            <div class="how-num">2</div>
+            <p>
+              <strong>Final challenge — the whole chapter</strong>
+              <span>4 harder questions, including putting all seven verses
+              back in chapter order.</span>
+            </p>
+          </div>
+          <div class="how-row">
+            <div class="how-num">3</div>
+            <p>
+              <strong>Your score out of 11</strong>
+              <span>Shown at the end, with the right answer to every
+              question.</span>
+            </p>
+          </div>
+        </div>
+
+        <button class="btn" id="btn-start" type="button">Start the test</button>
+        <p class="plain-note">
+          This is a learning quiz, not a qualification. No names, no emails —
+          nothing you enter is saved. Your score stays on this screen.
+        </p>
+      </section>
+
+      <!-- ================= QUIZ ================= -->
+      <section id="screen-quiz" hidden>
+        <div class="quiz-top">
+          <p class="round-label" id="round-label">Round 1 — Verse by verse</p>
+          <p class="q-count" id="q-count">Question 1 of 11</p>
+        </div>
+        <div class="progress"><div class="progress-bar" id="progress-bar" style="width: 0%"></div></div>
+
+        <div id="verse-block">
+          <div class="arabic-panel">
+            <p class="ar" id="verse-ar" dir="rtl" lang="ar"></p>
+          </div>
+          <div class="verse-en">
+            <span class="verse-ref" id="verse-ref"></span>
+            <p id="verse-en"></p>
+          </div>
+        </div>
+
+        <h2 class="question" id="question-text"></h2>
+        <p class="question-sub" id="question-sub"></p>
+
+        <div id="mc-block">
+          <div class="options" id="options"></div>
+        </div>
+
+        <div id="order-block" hidden>
+          <div class="picked-zone" id="picked-zone"></div>
+          <div class="tile-grid" id="tile-grid"></div>
+          <div class="order-actions">
+            <button class="btn secondary small" id="btn-undo" type="button">Undo last</button>
+            <button class="btn secondary small" id="btn-clear" type="button">Start over</button>
+          </div>
+        </div>
+
+        <div class="feedback" id="feedback" aria-live="polite">
+          <p class="verdict" id="feedback-verdict"></p>
+          <p class="answer-text" id="feedback-answer"></p>
+        </div>
+
+        <button class="btn" id="btn-check" type="button" disabled>Check answer</button>
+        <button class="btn" id="btn-next" type="button" hidden>Next question</button>
+      </section>
+
+      <!-- ================= RESULTS ================= -->
+      <section id="screen-results" hidden>
+        <p class="chapter-line">Your result</p>
+        <div class="score-hero">
+          <p class="score-big"><span id="score-num">0</span><small> / 11</small></p>
+          <p class="score-msg" id="score-msg"></p>
+          <p class="score-sub">This is a learning quiz, not a qualification.</p>
+          <button class="btn" id="btn-again" type="button">Take the test again</button>
+        </div>
+        <h2 class="review-title">Every question, with the right answers</h2>
+        <div id="review-list"></div>
+      </section>
+
+      <footer>
+        <p>
+          Quran text: Tanzil Project (tanzil.net), CC BY 3.0, verbatim.
+          English: Mohammed Marmaduke Pickthall, “The Meaning of the Glorious
+          Koran” (1930), verbatim.
+        </p>
+        <p>Every question and answer in this test comes from the chapter itself, Al-Fatiha 1:1–1:7.</p>
+      </footer>
+    </main>
+
+    <script>
+      // ---- Verbatim chapter text (Tanzil Arabic / Pickthall 1930 English) ----
+      var VERSES = {
+        "1:1": {
+          ar: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
+          en: "In the name of Allah, the Beneficent, the Merciful."
+        },
+        "1:2": {
+          ar: "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ",
+          en: "Praise be to Allah, Lord of the Worlds,"
+        },
+        "1:3": {
+          ar: "ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
+          en: "The Beneficent, the Merciful."
+        },
+        "1:4": {
+          ar: "مَٰلِكِ يَوْمِ ٱلدِّينِ",
+          en: "Master of the Day of Judgment,"
+        },
+        "1:5": {
+          ar: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+          en: "Thee (alone) we worship; Thee (alone) we ask for help."
+        },
+        "1:6": {
+          ar: "ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ",
+          en: "Show us the straight path,"
+        },
+        "1:7": {
+          ar: "صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ",
+          en: "The path of those whom Thou hast favoured; Not the (path) of those who earn Thine anger nor of those who go astray."
+        }
+      };
+
+      // ---- Questions: wording and answers from the project's checked answer key ----
+      // Every option is built from the chapter's own words.
+      var QUESTIONS = [
+        {
+          type: "mc", round: 1, verse: "1:1",
+          q: "What two names are given right at the opening, after “In the name of Allah”?",
+          options: [
+            "The Beneficent, the Merciful.",
+            "Lord of the Worlds",
+            "Master of the Day of Judgment",
+            "The straight path"
+          ],
+          correct: 0,
+          answer: "The Beneficent, the Merciful."
+        },
+        {
+          type: "mc", round: 1, verse: "1:2",
+          q: "Who is praise given to, and what title follows in 1:2?",
+          options: [
+            "The Beneficent, the Merciful.",
+            "Allah, Lord of the Worlds.",
+            "Master of the Day of Judgment,",
+            "Thee (alone) we ask for help."
+          ],
+          correct: 1,
+          answer: "Allah, Lord of the Worlds."
+        },
+        {
+          type: "mc", round: 1, verse: "1:3",
+          q: "Which verse repeats the two names from 1:1, word for word?",
+          options: [
+            "1:2 — “Praise be to Allah, Lord of the Worlds,”",
+            "1:3 — “The Beneficent, the Merciful.”",
+            "1:4 — “Master of the Day of Judgment,”",
+            "1:6 — “Show us the straight path,”"
+          ],
+          correct: 1,
+          answer: "1:3 — “The Beneficent, the Merciful.”"
+        },
+        {
+          type: "mc", round: 1, verse: "1:4",
+          q: "What new title appears in 1:4 that was not in 1:1 to 1:3?",
+          options: [
+            "Lord of the Worlds",
+            "The Beneficent, the Merciful.",
+            "Master of the Day of Judgment.",
+            "The straight path"
+          ],
+          correct: 2,
+          answer: "Master of the Day of Judgment."
+        },
+        {
+          type: "mc", round: 1, verse: "1:5",
+          q: "In 1:5, what two things are done for “Thee alone”?",
+          options: [
+            "Worship, and asking for help.",
+            "Praise, and the straight path.",
+            "Favour, and going astray.",
+            "Judgment, and the Worlds."
+          ],
+          correct: 0,
+          answer: "Worship, and asking for help."
+        },
+        {
+          type: "mc", round: 1, verse: "1:6",
+          q: "What is the first request in the chapter, in 1:6?",
+          options: [
+            "“Master of the Day of Judgment,”",
+            "“Praise be to Allah, Lord of the Worlds,”",
+            "“Thee (alone) we worship; Thee (alone) we ask for help.”",
+            "“Show us the straight path,”"
+          ],
+          correct: 3,
+          answer: "“Show us the straight path.”"
+        },
+        {
+          type: "mc", round: 1, verse: "1:7",
+          q: "In 1:7, the straight path is the path of whom, and NOT the path of whom?",
+          options: [
+            "Of those who earn Thine anger; not of those whom Thou hast favoured, nor of those who go astray.",
+            "Of those whom Thou hast favoured; not of those who earn Thine anger, nor of those who go astray.",
+            "Of those who go astray; not of those whom Thou hast favoured, nor of those who earn Thine anger.",
+            "Of those whom Thou hast favoured; not of the Worlds, nor of the Day of Judgment."
+          ],
+          correct: 1,
+          answer: "Of those whom Thou hast favoured; not of those who earn Thine anger, nor of those who go astray."
+        },
+        {
+          type: "order", round: 2,
+          q: "Put all seven verses in chapter order.",
+          sub: "Tap the verse openings in order, from the first verse of the chapter to the last.",
+          // Scrambled openings, exactly as given in the answer key.
+          tiles: [
+            "Master of the Day of Judgment",
+            "Show us the straight path",
+            "In the name of Allah, the Beneficent, the Merciful",
+            "The path of those whom Thou hast favoured",
+            "Praise be to Allah, Lord of the Worlds",
+            "The Beneficent, the Merciful",
+            "Thee (alone) we worship; Thee (alone) we ask for help"
+          ],
+          // Correct chapter order 1:1–1:7, by tile text.
+          order: [
+            "In the name of Allah, the Beneficent, the Merciful",
+            "Praise be to Allah, Lord of the Worlds",
+            "The Beneficent, the Merciful",
+            "Master of the Day of Judgment",
+            "Thee (alone) we worship; Thee (alone) we ask for help",
+            "Show us the straight path",
+            "The path of those whom Thou hast favoured"
+          ],
+          orderRefs: ["1:1", "1:2", "1:3", "1:4", "1:5", "1:6", "1:7"],
+          answer: "1:1, then 1:2, 1:3, 1:4, 1:5, 1:6, and 1:7 — the chapter order."
+        },
+        {
+          type: "mc", round: 2,
+          q: "What repeats in the chapter, and where?",
+          options: [
+            "“Lord of the Worlds” in 1:2 and again in 1:4; and “the straight path” twice inside 1:7.",
+            "“Master of the Day of Judgment” in 1:4 and again in 1:6; and “Praise be to Allah” twice inside 1:2.",
+            "“The Beneficent, the Merciful” in 1:1 and again in 1:3; and “Thee (alone)” twice inside 1:5.",
+            "“Show us the straight path” in 1:6 and again in 1:7; and “Thou hast favoured” twice inside 1:5."
+          ],
+          correct: 2,
+          answer: "“The Beneficent, the Merciful” in 1:1 and again in 1:3; and “Thee (alone)” twice inside 1:5 — worship, and asking for help."
+        },
+        {
+          type: "mc", round: 2,
+          q: "In one sentence from the chapter's own words, what does the chapter ask for as a whole?",
+          options: [
+            "To be shown the straight path — the path of those whom Thou hast favoured, not of those who earn Thine anger nor of those who go astray.",
+            "Praise be to Allah, Lord of the Worlds.",
+            "The Beneficent, the Merciful — the two names from the opening.",
+            "Master of the Day of Judgment."
+          ],
+          correct: 0,
+          answer: "To be shown the straight path — the path of those whom Thou hast favoured, not of those who earn Thine anger nor of those who go astray (1:6–1:7)."
+        },
+        {
+          type: "mc", round: 2,
+          q: "Which verse turns from describing Allah to speaking directly to Him, and what changes in the wording?",
+          options: [
+            "1:2 — “Praise be to Allah, Lord of the Worlds,”",
+            "1:4 — “Master of the Day of Judgment,”",
+            "1:5 — “Thee (alone) we worship; Thee (alone) we ask for help.”",
+            "1:7 — “The path of those whom Thou hast favoured; Not the (path) of those who earn Thine anger nor of those who go astray.”"
+          ],
+          correct: 2,
+          answer: "1:5. Before it, the verses describe Allah in the third person (“Praise be to Allah”, “Master of the Day of Judgment”). In 1:5 the wording becomes direct address: “Thee (alone) we worship; Thee (alone) we ask for help.”"
+        }
+      ];
+
+      var TOTAL = QUESTIONS.length; // 11
+      var state = null;
+
+      function $(id) { return document.getElementById(id); }
+
+      function shuffle(arr) {
+        var a = arr.slice();
+        for (var i = a.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var t = a[i]; a[i] = a[j]; a[j] = t;
+        }
+        return a;
+      }
+
+      function startQuiz() {
+        state = {
+          idx: 0,
+          score: 0,
+          results: [],       // {q, yours, correctText, ok, isOrder, yourOrder, rightOrder}
+          selected: -1,      // mc selection index into shuffled options
+          shuffled: null,    // shuffled option texts for current mc
+          picked: [],        // ordering picks (tile texts)
+          checked: false
+        };
+        $("screen-start").hidden = true;
+        $("screen-results").hidden = true;
+        $("screen-quiz").hidden = false;
+        renderQuestion();
+        window.scrollTo(0, 0);
+      }
+
+      function renderQuestion() {
+        var item = QUESTIONS[state.idx];
+        state.selected = -1;
+        state.picked = [];
+        state.checked = false;
+
+        $("round-label").textContent =
+          item.round === 1 ? "Round 1 — Verse by verse" : "Final challenge — The whole chapter";
+        $("q-count").textContent = "Question " + (state.idx + 1) + " of " + TOTAL;
+        $("progress-bar").style.width = (state.idx / TOTAL) * 100 + "%";
+
+        // Verse panel only for Round 1 (one verse per question).
+        if (item.verse) {
+          $("verse-block").hidden = false;
+          $("verse-ar").textContent = VERSES[item.verse].ar;
+          $("verse-ref").textContent = item.verse;
+          $("verse-en").textContent = "“" + VERSES[item.verse].en + "”";
+        } else {
+          $("verse-block").hidden = true;
+        }
+
+        $("question-text").textContent = item.q;
+        $("question-sub").textContent = item.sub || "";
+        $("question-sub").style.display = item.sub ? "" : "none";
+
+        $("feedback").className = "feedback";
+        $("btn-check").hidden = false;
+        $("btn-check").disabled = true;
+        $("btn-next").hidden = true;
+        $("btn-next").textContent =
+          state.idx === TOTAL - 1 ? "See my score" : "Next question";
+
+        if (item.type === "mc") {
+          $("mc-block").hidden = false;
+          $("order-block").hidden = true;
+          state.shuffled = shuffle(item.options);
+          var box = $("options");
+          box.innerHTML = "";
+          state.shuffled.forEach(function (text, i) {
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "option";
+            var letter = document.createElement("span");
+            letter.className = "letter";
+            letter.textContent = "ABCD".charAt(i);
+            var label = document.createElement("span");
+            label.textContent = text;
+            b.appendChild(letter);
+            b.appendChild(label);
+            b.addEventListener("click", function () { selectOption(i, b); });
+            box.appendChild(b);
+          });
+        } else {
+          $("mc-block").hidden = true;
+          $("order-block").hidden = false;
+          renderOrder(item);
+        }
+      }
+
+      function selectOption(i, btn) {
+        if (state.checked) return;
+        state.selected = i;
+        var kids = $("options").children;
+        for (var k = 0; k < kids.length; k++) kids[k].classList.remove("selected");
+        btn.classList.add("selected");
+        $("btn-check").disabled = false;
+      }
+
+      function renderOrder(item) {
+        var zone = $("picked-zone");
+        zone.innerHTML = "";
+        if (state.picked.length === 0) {
+          var hint = document.createElement("p");
+          hint.className = "empty-hint";
+          hint.textContent = "Your order will appear here.";
+          zone.appendChild(hint);
+        } else {
+          state.picked.forEach(function (text, i) {
+            var row = document.createElement("div");
+            row.className = "picked-item";
+            var n = document.createElement("span");
+            n.className = "n";
+            n.textContent = i + 1;
+            var t = document.createElement("span");
+            t.textContent = text;
+            row.appendChild(n);
+            row.appendChild(t);
+            zone.appendChild(row);
+          });
+        }
+        var grid = $("tile-grid");
+        grid.innerHTML = "";
+        item.tiles.forEach(function (text) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "tile" + (state.picked.indexOf(text) !== -1 ? " used" : "");
+          b.textContent = text;
+          b.disabled = state.picked.indexOf(text) !== -1 || state.checked;
+          b.addEventListener("click", function () {
+            if (state.checked) return;
+            state.picked.push(text);
+            renderOrder(item);
+            $("btn-check").disabled = state.picked.length !== item.tiles.length;
+          });
+          grid.appendChild(b);
+        });
+        $("btn-undo").disabled = state.picked.length === 0 || state.checked;
+        $("btn-clear").disabled = state.picked.length === 0 || state.checked;
+      }
+
+      function checkAnswer() {
+        var item = QUESTIONS[state.idx];
+        if (state.checked) return;
+        var ok = false, yoursText = "";
+
+        if (item.type === "mc") {
+          if (state.selected < 0) return;
+          yoursText = state.shuffled[state.selected];
+          ok = yoursText === item.options[item.correct];
+          var kids = $("options").children;
+          for (var k = 0; k < kids.length; k++) {
+            kids[k].classList.add("locked");
+            if (state.shuffled[k] === item.options[item.correct]) kids[k].classList.add("correct");
+            else if (k === state.selected) kids[k].classList.add("wrong");
+            kids[k].disabled = true;
+          }
+        } else {
+          if (state.picked.length !== item.tiles.length) return;
+          yoursText = state.picked.join(" → ");
+          ok = true;
+          for (var i = 0; i < item.order.length; i++) {
+            if (state.picked[i] !== item.order[i]) { ok = false; break; }
+          }
+          renderOrder(item);
+        }
+
+        state.checked = true;
+        if (ok) state.score++;
+        state.results.push({
+          q: item.q,
+          ok: ok,
+          yours: yoursText,
+          correctText: item.answer,
+          isOrder: item.type === "order",
+          yourOrder: item.type === "order" ? state.picked.slice() : null,
+          rightOrder: item.type === "order" ? item.order.slice() : null,
+          orderRefs: item.orderRefs || null
+        });
+
+        var fb = $("feedback");
+        fb.className = "feedback show " + (ok ? "good" : "bad");
+        $("feedback-verdict").textContent = ok ? "Correct." : "Not quite.";
+        $("feedback-answer").innerHTML = "";
+        var strong = document.createElement("strong");
+        strong.textContent = "Answer: ";
+        $("feedback-answer").appendChild(strong);
+        $("feedback-answer").appendChild(document.createTextNode(item.answer));
+
+        $("progress-bar").style.width = ((state.idx + 1) / TOTAL) * 100 + "%";
+        $("btn-check").hidden = true;
+        $("btn-next").hidden = false;
+        $("btn-next").focus();
+      }
+
+      function nextQuestion() {
+        if (state.idx < TOTAL - 1) {
+          state.idx++;
+          renderQuestion();
+          window.scrollTo(0, 0);
+        } else {
+          showResults();
+        }
+      }
+
+      function showResults() {
+        $("screen-quiz").hidden = true;
+        $("screen-results").hidden = false;
+        $("score-num").textContent = state.score;
+        var msg;
+        if (state.score === 11) msg = "Every answer right. You know this chapter, verse by verse.";
+        else if (state.score >= 8) msg = "Strong knowledge of Al-Fatiha — only a few details missed.";
+        else if (state.score >= 5) msg = "A good start. Read the seven verses again and the missed ones will stick.";
+        else msg = "The chapter is only seven verses — read them slowly, then try again.";
+        $("score-msg").textContent = msg;
+
+        var list = $("review-list");
+        list.innerHTML = "";
+        state.results.forEach(function (r, i) {
+          var card = document.createElement("div");
+          card.className = "review-card";
+          var rq = document.createElement("p");
+          rq.className = "rq";
+          rq.textContent = (i + 1) + ". " + r.q;
+          card.appendChild(rq);
+
+          if (r.isOrder) {
+            var yours = document.createElement("p");
+            yours.className = "ra";
+            var tag = document.createElement("span");
+            tag.className = "tag " + (r.ok ? "yours-good" : "yours-bad");
+            tag.textContent = r.ok ? "Your order — correct" : "Your order";
+            yours.appendChild(tag);
+            card.appendChild(yours);
+            var ol1 = document.createElement("ol");
+            r.yourOrder.forEach(function (t) {
+              var li = document.createElement("li");
+              li.textContent = t;
+              ol1.appendChild(li);
+            });
+            card.appendChild(ol1);
+            if (!r.ok) {
+              var right = document.createElement("p");
+              right.className = "ra";
+              var tag2 = document.createElement("span");
+              tag2.className = "tag right";
+              tag2.textContent = "Right order";
+              right.appendChild(tag2);
+              card.appendChild(right);
+              var ol2 = document.createElement("ol");
+              r.rightOrder.forEach(function (t, j) {
+                var li = document.createElement("li");
+                li.textContent = t + "  (" + r.orderRefs[j] + ")";
+                ol2.appendChild(li);
+              });
+              card.appendChild(ol2);
+            }
+          } else {
+            var yp = document.createElement("p");
+            yp.className = "ra";
+            var ytag = document.createElement("span");
+            ytag.className = "tag " + (r.ok ? "yours-good" : "yours-bad");
+            ytag.textContent = r.ok ? "Your answer — correct" : "Your answer";
+            yp.appendChild(ytag);
+            yp.appendChild(document.createTextNode(r.yours));
+            card.appendChild(yp);
+            if (!r.ok) {
+              var rp = document.createElement("p");
+              rp.className = "ra";
+              var rtag = document.createElement("span");
+              rtag.className = "tag right";
+              rtag.textContent = "Right answer";
+              rp.appendChild(rtag);
+              rp.appendChild(document.createTextNode(r.correctText));
+              card.appendChild(rp);
+            }
+          }
+          list.appendChild(card);
+        });
+        window.scrollTo(0, 0);
+      }
+
+      $("btn-start").addEventListener("click", startQuiz);
+      $("btn-check").addEventListener("click", checkAnswer);
+      $("btn-next").addEventListener("click", nextQuestion);
+      $("btn-again").addEventListener("click", startQuiz);
+      $("btn-undo").addEventListener("click", function () {
+        var item = QUESTIONS[state.idx];
+        if (state.checked || state.picked.length === 0) return;
+        state.picked.pop();
+        renderOrder(item);
+        $("btn-check").disabled = true;
+      });
+      $("btn-clear").addEventListener("click", function () {
+        var item = QUESTIONS[state.idx];
+        if (state.checked) return;
+        state.picked = [];
+        renderOrder(item);
+        $("btn-check").disabled = true;
+      });
+    </script>
+  </body>
+</html>
